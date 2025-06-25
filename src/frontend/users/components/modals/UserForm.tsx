@@ -1,29 +1,18 @@
 "use client";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useFormContext } from "react-hook-form";
 import { TextField, MenuItem, Box } from "@mui/material";
-import { UserStatus } from "@prisma/client";
 import { UserSchema } from "@/frontend/users/types";
-import { userSchema } from "@/frontend/users/utils";
+import { UserStatus } from "@prisma/client";
 
-interface UserFormProps {
-  defaultValues?: Partial<UserSchema>;
-  onSubmit: (data: UserSchema) => void;
-  submitText?: string;
-}
-
-export const UserForm = ({ defaultValues, onSubmit }: UserFormProps) => {
+export const UserForm = () => {
   const {
     register,
-    handleSubmit,
     formState: { errors },
-  } = useForm<UserSchema>({
-    resolver: zodResolver(userSchema),
-    defaultValues: defaultValues,
-  });
+    getValues,
+  } = useFormContext<UserSchema>();
 
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
+    <Box component="div">
       <TextField
         label="First Name"
         fullWidth
@@ -68,10 +57,10 @@ export const UserForm = ({ defaultValues, onSubmit }: UserFormProps) => {
         label="Status"
         fullWidth
         margin="normal"
+        defaultValue={getValues("status") || UserStatus.ACTIVE}
         error={!!errors.status}
         helperText={errors.status?.message}
         {...register("status")}
-        defaultValue={defaultValues?.status || UserStatus.ACTIVE}
       >
         <MenuItem value={UserStatus.ACTIVE}>Active</MenuItem>
         <MenuItem value={UserStatus.INACTIVE}>Inactive</MenuItem>
