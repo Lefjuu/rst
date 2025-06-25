@@ -1,4 +1,4 @@
-import { AddressType } from "@prisma/client";
+import { AddressType } from "@/backend/addresses/types";
 
 export type GetAddressesParams = {
   user_id: number;

@@ -1,5 +1,5 @@
+import { AddressType } from "@/backend/addresses/types";
 import { z } from "zod";
-import { AddressType } from "@prisma/client";
 
 export const addressSchema = z.object({
   user_id: z.number(),
@@ -35,3 +35,6 @@ export const parseSearchParam = (
 };
 
 export type AddressSchema = z.infer<typeof addressSchema>;
+
+export const isAddressType = (value: string): value is AddressType =>
+  Object.values(AddressType).includes(value as AddressType);
