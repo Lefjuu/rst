@@ -1,11 +1,11 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { TextField, MenuItem } from "@mui/material";
-import { AddressType } from "@prisma/client";
 import {
   CreateAddressParams,
   UpdateAddressParams,
 } from "@/frontend/addresses/types";
 import { AddressPreview } from "@/frontend/addresses/components/AddressPreview";
+import { AddressType } from "@/backend/addresses/types";
 
 export const AddressForm = () => {
   const {

@@ -6,3 +6,8 @@ export type GetUsersParams = {
 };
 
 export type CreateUserParams = Prisma.UserCreateInput;
+
+export enum UserStatus {
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
+}

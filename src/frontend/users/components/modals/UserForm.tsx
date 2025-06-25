@@ -2,9 +2,9 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TextField, MenuItem, Box } from "@mui/material";
-import { UserStatus } from "@prisma/client";
 import { UserSchema } from "@/frontend/users/types";
 import { userSchema } from "@/frontend/users/utils";
+import { UserStatus } from "@/backend/users/types";
 
 interface UserFormProps {
   defaultValues?: Partial<UserSchema>;
